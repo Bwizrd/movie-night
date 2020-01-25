@@ -1,0 +1,22 @@
+<!-- <ul *ngIf="movies$ | async as movies; else loading"  [@listAnimation]="movies"> -->
+<ul *ngIf="movies else loading"  [@listAnimation]="movies">
+    <!-- <li *ngFor="let movie of movies; trackBy: trackByFn; "> -->
+    <li *ngFor="let movie of movies; let i=index; trackBy: trackByFn; ">
+        <a [routerLink]="movie.id">
+            <img [src]="movie.image" />
+        </a>
+        <!-- <button (click)="deleteMovie(movie.id)">Delete</button> -->
+        <button (click)="deleteMovieFromArray(movie.id)">Delete</button>
+    <li>
+</ul>
+
+<ng-template #loading>
+
+  <ul [@listAnimation]="loadingMovies.length">
+    <li *ngFor="let movie of loadingMovies"
+    [@listAnimation]="loadingMovies.length" >
+        <img src="/assets/movie.png" />
+    <li>
+</ul>
+
+</ng-template>
